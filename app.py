@@ -54,9 +54,9 @@ def model_predict(img_path, model):
     preds = model.predict(x)
     preds=np.argmax(preds, axis=1)
     if preds==0:
-        preds="The Person is Infected With Pneumonia"
+        preds="Infected "
     else:
-        preds="The Person is not Infected With Pneumonia"
+        preds="Not Infected"
     
     
     return preds
@@ -72,13 +72,14 @@ def index():
 def upload():
     if request.method == 'POST':
         # Get the file from post request
-        f = request.files['file']
+        # f = request.files['file']
 
-        # Save the file to ./uploads
-        basepath = os.path.dirname(__file__)
-        file_path = os.path.join(
-            basepath, 'uploads', secure_filename(f.filename))
-        f.save(file_path)
+        # # Save the file to ./uploads
+        # basepath = os.path.dirname(__file__)
+        # file_path = os.path.join(
+        #     basepath, 'uploads', secure_filename(f.filename))
+        # f.save(file_path)
+        file_path = "inf1.png"
 
         # Make prediction
         preds = model_predict(file_path, model)
